@@ -44,8 +44,8 @@ class _MapView extends HookWidget {
     final position = useState<Position>(_initialPosition);
     final markers = useState<Map<String, Marker>>(initialMarkers);
 
-    _setCurrentLocation(position, markers);
-    _animateCamera(position);
+    //_setCurrentLocation(position, markers);
+    //_animateCamera(position);
 
     return Scaffold(
       body: GoogleMap(
@@ -64,7 +64,7 @@ class _MapView extends HookWidget {
     );
   }
 
-  Future<void> _setCurrentLocation(ValueNotifier<Position> position,
+  /*Future<void> _setCurrentLocation(ValueNotifier<Position> position,
       ValueNotifier<Map<String, Marker>> markers) async {
     final currentPosition = await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.high,
@@ -77,24 +77,24 @@ class _MapView extends HookWidget {
         (position.value.longitude).toStringAsFixed(decimalPoint) !=
             (currentPosition.longitude).toStringAsFixed(decimalPoint)) {
       // 現在地座標にMarkerを立てる
-      /*final marker = Marker(
+      final marker = Marker(
         markerId: MarkerId(currentPosition.timestamp.toString()),
         position: LatLng(currentPosition.latitude, currentPosition.longitude),
-      );*/
+      );
       markers.value.clear();
       markers.value[currentPosition.timestamp.toString()] = marker;
       // 現在地座標のstateを更新する
       position.value = currentPosition;
     }
-  }
+  }*/
 
   Future<void> _animateCamera(ValueNotifier<Position> position) async {
     final mapController = await _mapController.future;
     // 現在地座標が取得できたらカメラを現在地に移動する
-    await mapController.animateCamera(
+    /*await mapController.animateCamera(
       CameraUpdate.newLatLng(
         LatLng(position.value.latitude, position.value.longitude),
       ),
-    );
+    );*/
   }
 }
