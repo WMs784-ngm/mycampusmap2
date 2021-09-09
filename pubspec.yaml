@@ -36,7 +36,7 @@ dependencies:
   geocoding: ^2.0.1
   http: ^0.13.3
   basic_utils: ^1.0.4
-  map_view: ^0.0.14
+  #map_view: ^0.0.14
   #lee_map_view: ^2.0.0
   #location: ^3.0.2
   #freezed: ^0.14.5
