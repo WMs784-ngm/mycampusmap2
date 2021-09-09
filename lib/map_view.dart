@@ -50,14 +50,16 @@ class _MapView extends HookWidget {
     return Scaffold(
       body: GoogleMap(
         mapType: MapType.normal,
-        myLocationButtonEnabled: false,
+        myLocationEnabled: true,
+        myLocationButtonEnabled: true,
+        compassEnabled: true,
         // 初期表示位置は渋谷駅に設定
         initialCameraPosition: CameraPosition(
           target: LatLng(_initialPosition.latitude, _initialPosition.longitude),
           zoom: 14.4746,
         ),
         onMapCreated: _mapController.complete,
-        markers: markers.value.values.toSet(),
+        //markers: markers.value.values.toSet(),
       ),
     );
   }
@@ -75,10 +77,10 @@ class _MapView extends HookWidget {
         (position.value.longitude).toStringAsFixed(decimalPoint) !=
             (currentPosition.longitude).toStringAsFixed(decimalPoint)) {
       // 現在地座標にMarkerを立てる
-      final marker = Marker(
+      /*final marker = Marker(
         markerId: MarkerId(currentPosition.timestamp.toString()),
         position: LatLng(currentPosition.latitude, currentPosition.longitude),
-      );
+      );*/
       markers.value.clear();
       markers.value[currentPosition.timestamp.toString()] = marker;
       // 現在地座標のstateを更新する
