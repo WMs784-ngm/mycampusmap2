@@ -1,3 +1,4 @@
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -69,7 +70,6 @@ class _MapView extends HookWidget {
     final currentPosition = await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.high,
     );
-
     const decimalPoint = 3;
     // 過去の座標と最新の座標の小数点第三位で切り捨てた値を判定
     if ((position.value.latitude).toStringAsFixed(decimalPoint) !=
