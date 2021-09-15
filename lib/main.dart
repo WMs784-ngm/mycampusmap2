@@ -3,7 +3,13 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 
+import 'search_building.dart';
+
 void main() => runApp(MyApp());
+
+List<double> lat = [35.6598812,35.6606455];
+List<double> long = [139.6865876,139.6849458];
+String cn = '';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -35,10 +41,13 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   late GoogleMapController mapController;
-  // double _originLatitude = 6.5212402, _originLongitude = 3.3679965;
-  // double _destLatitude = 6.849660, _destLongitude = 3.648190;
-  double _originLatitude = 26.48424, _originLongitude = 50.04551;
-  double _destLatitude = 26.46423, _destLongitude = 50.06358;
+  //double _originLatitude = 6.5212402, _originLongitude = 3.3679965;
+  //double _destLatitude = 6.849660, _destLongitude = 3.648190;
+  //double _originLatitude = 26.48424, _originLongitude = 50.04551;
+  //double _destLatitude = 26.46423, _destLongitude = 50.06358;
+  //double _originLatitude = 35.8430015, _originLongitude = 139.4497358;家
+  double _originLatitude = 35.6587374, _originLongitude = 139.6840927;//駒場東大前駅
+  double _destLatitude = lat[0], _destLongitude = long[0];//駒場図書館
   Map<MarkerId, Marker> markers = {};
   Map<PolylineId, Polyline> polylines = {};
   List<LatLng> polylineCoordinates = [];
@@ -63,6 +72,15 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        /*appBar:AppBar(
+          child: <Widget>[
+            TextField(
+              onChanged:(text){
+                cn = text;
+              }
+            ),
+          ]
+        ),*/
           body: GoogleMap(
             initialCameraPosition: CameraPosition(
                 target: LatLng(_originLatitude, _originLongitude), zoom: 15),
@@ -103,7 +121,8 @@ class _MapScreenState extends State<MapScreen> {
         PointLatLng(_originLatitude, _originLongitude),
         PointLatLng(_destLatitude, _destLongitude),
         travelMode: TravelMode.driving,
-        wayPoints: [PolylineWayPoint(location: "Sabo, Yaba Lagos Nigeria")]);
+        //wayPoints: [PolylineWayPoint(location: "Sabo, Yaba Lagos Nigeria")]
+        );
     if (result.points.isNotEmpty) {
       result.points.forEach((PointLatLng point) {
         polylineCoordinates.add(LatLng(point.latitude, point.longitude));
