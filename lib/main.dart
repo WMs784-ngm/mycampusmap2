@@ -10,12 +10,12 @@ void main() => runApp(MyApp());
 
 List<double> lat = [35.6598812,35.6606455];//駒場図書館,10号館
 List<double> long = [139.6865876,139.6849458];
-String cn = '';
 List<int> min = [101,21,101,011,511,1,721,110,900,101,1101,1211,1311,1];//教室番号の最小値
 List<int> max = [192,49,502,214,534,4,762,422,900,405,1109,1233,1341,3];//教室番号の最大値
 List<String> name = ["1号館","情報教育棟","21KOMCEE West","21KOMCEE East","5号館",
   "コミニケーションプラザ(北)","7号館","8号館","講堂","10号館","11号館","12号館","13号館"];
 String e = "正しい教室番号を入力してください";
+String cn = e;
 
 String search(cn){
   if(cn.length<4){
@@ -125,6 +125,14 @@ String search(cn){
     }
   }
 }
+double dest_lat(text){
+  if(search(text) == e)return lat[0];
+  else return lat[1];
+}
+double dest_long(text){
+  if(search(text) == e)return long[0];
+  else return long[1];
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -133,15 +141,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Polyline example',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.orange,
       ),
       home: MapScreen(),
@@ -156,13 +155,9 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   late GoogleMapController mapController;
-  //double _originLatitude = 6.5212402, _originLongitude = 3.3679965;
-  //double _destLatitude = 6.849660, _destLongitude = 3.648190;
-  //double _originLatitude = 26.48424, _originLongitude = 50.04551;
-  //double _destLatitude = 26.46423, _destLongitude = 50.06358;
   //double _originLatitude = 35.8430015, _originLongitude = 139.4497358;家
   double _originLatitude = 35.6587374, _originLongitude = 139.6840927;//駒場東大前駅
-  double _destLatitude = lat[0], _destLongitude = long[0];
+  //double _destLatitude = dest_lat(cn), _destLongitude = dest_long(cn);
   Map<MarkerId, Marker> markers = {};
   Map<PolylineId, Polyline> polylines = {};
   List<LatLng> polylineCoordinates = [];
@@ -178,7 +173,7 @@ class _MapScreenState extends State<MapScreen> {
         BitmapDescriptor.defaultMarker);
 
     /// destination marker
-    _addMarker(LatLng(_destLatitude, _destLongitude), "destination",
+    _addMarker(LatLng(dest_lat(cn), dest_long(cn)), "destination",
         BitmapDescriptor.defaultMarkerWithHue(90));
     _getPolyline();
   }
@@ -191,15 +186,14 @@ class _MapScreenState extends State<MapScreen> {
           title:Text("教室番号"),
           onChanged:(text){
             cn = text;
-            if(text != e){
-              _destLatitude = lat[1];
-              _destLongitude = long[1];
-            }
+            //_destLatitude = dest_lat(cn);
+            //_destLongitude = dest_long(cn);
+            _getPolyline();
           }
         ),
           body: GoogleMap(
             initialCameraPosition: CameraPosition(
-                target: LatLng(_originLatitude, _originLongitude), zoom: 15),
+                target: LatLng(_originLatitude, _originLongitude), zoom: 16),
             myLocationEnabled: true,
             tiltGesturesEnabled: true,
             compassEnabled: true,
@@ -211,7 +205,6 @@ class _MapScreenState extends State<MapScreen> {
           )),
     );
   }
-
   void _onMapCreated(GoogleMapController controller) async {
     mapController = controller;
   }
@@ -235,7 +228,7 @@ class _MapScreenState extends State<MapScreen> {
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
         googleAPiKey,
         PointLatLng(_originLatitude, _originLongitude),
-        PointLatLng(_destLatitude, _destLongitude),
+        PointLatLng(dest_lat(cn), dest_long(cn)),
         travelMode: TravelMode.walking,
         //wayPoints: [PolylineWayPoint(location: "Sabo, Yaba Lagos Nigeria")]
         );
