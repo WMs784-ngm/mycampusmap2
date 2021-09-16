@@ -196,8 +196,9 @@ class _MapScreenState extends State<MapScreen> {
           title:Text("教室番号"),
           onChanged:(text){
             cn = text;
-            _addMarker(LatLng(dest_lat(cn), dest_long(cn)), "destination", BitmapDescriptor.defaultMarkerWithHue(90));
-            _getPolyline();
+            //_addMarker(LatLng(dest_lat(cn), dest_long(cn)), "destination", BitmapDescriptor.defaultMarkerWithHue(90));
+            //_getPolyline();
+            _MapScreenState();
           }
         ),
           body: GoogleMap(
