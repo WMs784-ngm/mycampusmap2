@@ -143,7 +143,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home: MapScreen(),
+      home:Scaffold(
+        /*appBar:AppBarTextField(
+            title:Text("教室番号"),
+            onChanged:(text){
+              cn = text;
+              //createState();
+              _MapScreenState();
+            }
+      ),*/
+          body:MapScreen(),
+    )
     );
   }
 }
@@ -186,8 +196,7 @@ class _MapScreenState extends State<MapScreen> {
           title:Text("教室番号"),
           onChanged:(text){
             cn = text;
-            //_destLatitude = dest_lat(cn);
-            //_destLongitude = dest_long(cn);
+            _addMarker(LatLng(dest_lat(cn), dest_long(cn)), "destination", BitmapDescriptor.defaultMarkerWithHue(90));
             _getPolyline();
           }
         ),
