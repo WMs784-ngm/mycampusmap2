@@ -26,7 +26,8 @@ int e = 100;
 double ori_lat = 35.6587374, ori_long = 139.6840927;
 
 int search(cn){
-  if(cn.length<4){
+  if(cn == null) return e;
+  else if(cn.length<4){
     if(cn[0] == 'E'){
       try{//文字列から数値への変換を試す
         int i = int.parse(cn.substring(1));
@@ -53,6 +54,7 @@ int search(cn){
     }catch(exception){
       return e;
     }
+    //else return e;
   }
   else if(cn == "KALS")return 16;
   else if(cn[0] == "K"){
@@ -213,6 +215,12 @@ class _MapScreenState extends State<MapScreen> {
             _addMarker(LatLng(dest_lat(cn), dest_long(cn)), "destination", BitmapDescriptor.defaultMarkerWithHue(90));
             //_getPolyline();
             //MapScreen();
+            mapController.animateCamera(
+              CameraUpdate.newCameraPosition(
+                CameraPosition(
+                    target: LatLng(dest_lat(cn), dest_long(cn)), zoom: 17.0),
+              ),
+            );
             main();
             //runApp(MyApp());
             //_getPolyline();
@@ -220,7 +228,7 @@ class _MapScreenState extends State<MapScreen> {
         ),
           body: GoogleMap(
             initialCameraPosition: CameraPosition(
-                target: LatLng(_originLatitude, _originLongitude), zoom: 17),
+                target: LatLng(dest_lat(cn),dest_long(cn)), zoom: 17),
             myLocationEnabled: true,
             tiltGesturesEnabled: true,
             compassEnabled: true,
