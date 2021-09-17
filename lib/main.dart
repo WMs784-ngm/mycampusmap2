@@ -26,7 +26,8 @@ int e = 100;
 double ori_lat = 35.6587374, ori_long = 139.6840927;
 
 int search(cn){
-  if(cn.length<4){
+  if(cn == null) return e;
+  else if(cn.length<4){
     if(cn[0] == 'E'){
       try{//文字列から数値への変換を試す
         int i = int.parse(cn.substring(1));
@@ -214,6 +215,12 @@ class _MapScreenState extends State<MapScreen> {
             //_getPolyline();
             //MapScreen();
             main();
+            mapController.animateCamera(
+              CameraUpdate.newCameraPosition(
+                CameraPosition(
+                    target: LatLng(dest_lat(cn), dest_long(cn)), zoom: 17.0),
+              ),
+            );
             //runApp(MyApp());
             //_getPolyline();
           }
