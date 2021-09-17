@@ -19,6 +19,7 @@ List<String> name = ["1号館","情報教育棟","21KOMCEE West","21KOMCEE East"
 String ec = "正しい教室番号を入力してください";
 String cn = ec;
 int e = 100;
+double ori_lat = 35.6587374, ori_long = 139.6840927;
 
 int search(cn){
   if(cn.length<4){
@@ -129,11 +130,11 @@ int search(cn){
   }
 }
 double dest_lat(text){
-  if(search(text) >= lat.length)return lat[3];
+  if(search(text) >= lat.length)return ori_lat;
   else return lat[search(text)];
 }
 double dest_long(text){
-  if(search(text) >= long.length)return long[3];
+  if(search(text) >= long.length)return ori_long;
   else return long[search(text)];
 }
 String mark_name(text){
@@ -203,9 +204,12 @@ class _MapScreenState extends State<MapScreen> {
           title:Text("教室番号"),
           onChanged:(text){
             cn = text;
-            _addMarker(LatLng(dest_lat(cn), dest_long(cn)), "destination", BitmapDescriptor.defaultMarkerWithHue(90));
-            _getPolyline();
+            //main();
             //_MapScreenState();
+            _addMarker(LatLng(dest_lat(cn), dest_long(cn)), "destination", BitmapDescriptor.defaultMarkerWithHue(90));
+            //_getPolyline();
+            //_MapScreenState();
+            main();
           }
         ),
           body: GoogleMap(
