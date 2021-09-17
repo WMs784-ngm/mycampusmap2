@@ -222,6 +222,12 @@ class _MapScreenState extends State<MapScreen> {
               ),
             );
             main();
+            mapController.animateCamera(
+              CameraUpdate.newCameraPosition(
+                CameraPosition(
+                    target: LatLng(dest_lat(cn), dest_long(cn)), zoom: 17.0),
+              ),
+            );
             //runApp(MyApp());
             //_getPolyline();
           }
