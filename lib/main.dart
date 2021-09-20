@@ -210,8 +210,6 @@ class _MapScreenState extends State<MapScreen> {
           title:Text("教室番号"),
           onChanged:(text){
             cn = text;
-            //main();
-            //_MapScreenState();
             _addMarker(LatLng(dest_lat(cn), dest_long(cn)), "destination", BitmapDescriptor.defaultMarkerWithHue(90));
             //_getPolyline();
             //MapScreen();
@@ -222,13 +220,6 @@ class _MapScreenState extends State<MapScreen> {
               ),
             );
             main();
-            mapController.animateCamera(
-              CameraUpdate.newCameraPosition(
-                CameraPosition(
-                    target: LatLng(dest_lat(cn), dest_long(cn)), zoom: 17.0),
-              ),
-            );
-            //runApp(MyApp());
             //_getPolyline();
           }
         ),
@@ -236,6 +227,7 @@ class _MapScreenState extends State<MapScreen> {
             initialCameraPosition: CameraPosition(
                 target: LatLng(dest_lat(cn),dest_long(cn)), zoom: 17),
             myLocationEnabled: true,
+            myLocationButtonEnabled: true,
             tiltGesturesEnabled: true,
             compassEnabled: true,
             scrollGesturesEnabled: true,
