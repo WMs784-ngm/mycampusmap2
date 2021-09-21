@@ -3,6 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:appbar_textfield/appbar_textfield.dart';
+import 'package:slim/slim.dart';
 
 //import 'search_building.dart';
 
@@ -219,6 +220,8 @@ class _MapScreenState extends State<MapScreen> {
                     target: LatLng(dest_lat(cn), dest_long(cn)), zoom: 17.0),
               ),
             );
+            //_getPolyline.setMap(null);
+
             main();
             //_getPolyline();
           }
@@ -260,6 +263,7 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   _getPolyline() async {
+    //clearOverlay;
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
         googleAPiKey,
         PointLatLng(_originLatitude, _originLongitude),
