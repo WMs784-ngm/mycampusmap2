@@ -6,6 +6,8 @@ import 'package:appbar_textfield/appbar_textfield.dart';
 import 'package:slim/slim.dart';
 
 import 'search_building.dart';
+import 'apikey.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -39,7 +41,7 @@ class _MapScreenState extends State<MapScreen> {
   Map<PolylineId, Polyline> polylines = {};
   List<LatLng> polylineCoordinates = [];
   PolylinePoints polylinePoints = PolylinePoints();
-  String googleAPiKey = "AIzaSyDSEFIrVbRPeaFm2W_585Sn07nTWqciPho";
+
 
   @override
   void initState() {

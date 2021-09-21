@@ -1,4 +1,5 @@
 # Miscellaneous
+apikey.dart
 *.class
 *.log
 *.pyc
