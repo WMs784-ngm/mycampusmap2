@@ -19,14 +19,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.orange,
       ),
       home:Scaffold(
-        /*appBar:AppBarTextField(
-            title:Text("教室番号"),
-            onChanged:(text){
-              cn = text;
-              //createState();
-              _MapScreenState();
-            }
-      ),*/
           body:MapScreen(),
     )
     );
