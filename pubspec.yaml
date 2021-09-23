@@ -40,6 +40,7 @@ dependencies:
   flutter_polyline_points: ^0.2.1
   appbar_textfield: ^1.0.1+1
   slim: ^4.2.8
+  dio: ^3.0.10
   #circular_reveal_animation: ^2.0.0
   #map_view: ^0.0.14
   #lee_map_view: ^2.0.0

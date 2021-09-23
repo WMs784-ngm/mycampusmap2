@@ -16,13 +16,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Komaba map',
-      theme: ThemeData(
-        primarySwatch: Colors.orange,
-      ),
-      home:Scaffold(
+        title: 'Komaba map',
+        theme: ThemeData(
+          primarySwatch: Colors.orange,
+        ),
+        home:Scaffold(
           body:MapScreen(),
-    )
+        )
     );
   }
 }
@@ -61,25 +61,25 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar:AppBarTextField(
-          title:Text("教室番号"),
-          onChanged:(text){
-            cn = text;
-            _addMarker(LatLng(dest_lat(cn), dest_long(cn)), "destination", BitmapDescriptor.defaultMarkerWithHue(90));
-            //_getPolyline();
-            //MapScreen();
-            mapController.animateCamera(
-              CameraUpdate.newCameraPosition(
-                CameraPosition(
-                    target: LatLng(dest_lat(cn), dest_long(cn)), zoom: 17.0),
-              ),
-            );
-            //_getPolyline.setMap(null);
+          appBar:AppBarTextField(
+              title:Text("教室番号"),
+              onChanged:(text){
+                cn = text;
+                _addMarker(LatLng(dest_lat(cn), dest_long(cn)), "destination", BitmapDescriptor.defaultMarkerWithHue(90));
+                //_getPolyline();
+                //MapScreen();
+                mapController.animateCamera(
+                  CameraUpdate.newCameraPosition(
+                    CameraPosition(
+                        target: LatLng(dest_lat(cn), dest_long(cn)), zoom: 17.0),
+                  ),
+                );
+                //_getPolyline.setMap(null);
 
-            main();
-            //_getPolyline();
-          }
-        ),
+                main();
+                //_getPolyline();
+              }
+          ),
           body: GoogleMap(
             initialCameraPosition: CameraPosition(
                 target: LatLng(dest_lat(cn),dest_long(cn)), zoom: 17),
@@ -119,12 +119,12 @@ class _MapScreenState extends State<MapScreen> {
   _getPolyline() async {
     //clearOverlay;
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-        googleAPiKey,
-        PointLatLng(_originLatitude, _originLongitude),
-        PointLatLng(dest_lat(cn), dest_long(cn)),
-        travelMode: TravelMode.walking,
-        //wayPoints: [PolylineWayPoint(location: "Sabo, Yaba Lagos Nigeria")]
-        );
+      googleAPiKey,
+      PointLatLng(_originLatitude, _originLongitude),
+      PointLatLng(dest_lat(cn), dest_long(cn)),
+      travelMode: TravelMode.walking,
+      //wayPoints: [PolylineWayPoint(location: "Sabo, Yaba Lagos Nigeria")]
+    );
     if (result.points.isNotEmpty) {
       result.points.forEach((PointLatLng point) {
         polylineCoordinates.add(LatLng(point.latitude, point.longitude));
