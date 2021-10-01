@@ -1,7 +1,7 @@
 # 駒場教室検索　プライバシーポリシー
 
-このアプリでは個人を特定できるような情報は取得しません。
-取得する情報は以下の通りです。
+アプリ「駒場教室検索」(以下、本アプリ)では個人を特定できるような情報は取得しません。
+取得する情報については、以下の通り定めます。
 
 ### 取得する情報
 
@@ -10,34 +10,25 @@
 
 ただし、位置情報をアプリに提供するかどうかは、ユーザーの設定によりいつでも変更可能です。
 
-### Markdown
+### 情報取得目的
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- 端末情報は、バグやクラッシュ等の問題が発生した際に、速やかな解決を目的として使用します。
+- 位置情報は、より正確なナビゲーションをするために使用します。提供するかどうかは任意ですが、提供しないことにより本アプリの一部サービスが
+利用できなくなる可能性がありますので、あらかじめご了承ください。
 
-```markdown
-Syntax highlighted code block
+## 免責事項
 
-# Header 1
-## Header 2
-### Header 3
+利用上の不具合などにつきまして、できる限りの対応はいたしますが、ユーザーが本アプリによって負ったいかなる損害についても、
+開発元は責任を負わないものとします。
 
-- Bulleted
-- List
+## プライバシーポリシーの変更について
 
-1. Numbered
-2. List
+本アプリのプライバシーポリシーは、ユーザーに告知なく変更できるものとします。変更後のプライバシーポリシーの発効は、
+本ウェブサイトにおいて変更が反映された時とします。
 
-**Bold** and _Italic_ and `Code` text
+## お問い合わせ先
 
-[Link](url) and ![Image](src)
-```
+Eメールアドレス：wms784.app@gmail.com
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+2021年10月1日制定
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/WMs784/Komaba_map/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
