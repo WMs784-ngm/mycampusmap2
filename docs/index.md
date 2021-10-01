@@ -1,12 +1,14 @@
 # 駒場教室検索　プライバシーポリシー
 
-[](
-You can use the [editor on GitHub](https://github.com/WMs784/Komaba_map/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
-)
+このアプリでは個人を特定できるような情報は取得しません。
+取得する情報は以下の通りです。
 
+###取得する情報
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+- 端末情報(機種名、OSバージョン等)
+- 位置情報
 
+ただし、位置情報をアプリに提供するかどうかは、ユーザーの設定によりいつでも変更可能です。
 
 ### Markdown
 
