@@ -45,7 +45,6 @@ int search(cn){
     }catch(exception){
       return e;
     }
-    //else return e;
   }
   else if(cn == "KALS")return 16;
   else if(cn[0] == "K"){
