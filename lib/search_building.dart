@@ -14,7 +14,7 @@ List<String> name = ["1号館","情報教育棟","21KOMCEE West","21KOMCEE East"
 String ec = "正しい教室番号を入力してください";
 String cn = ec;
 int e = 100;
-double ori_lat = 35.6587374, ori_long = 139.6840927;
+double ori_lat = 35.6587374, ori_long = 139.6840927;//デフォルトのカメラ位置として使用する駒場東大前駅の座標
 
 int search(cn){
   if(cn == null) return e;
@@ -22,7 +22,7 @@ int search(cn){
     if(cn[0] == 'E'){
       try{//文字列から数値への変換を試す
         int i = int.parse(cn.substring(1));
-        if(min[1]<= i && i <= max[1])return 1;
+        if(min[1]<= i && i <= max[1])return 1;//教室番号の最大値と最小値の間ならあるという判定(もちろん不正確)
         else return e;
       }catch(exception){//変換不可能な場合例外としてここに入る
         return e;
