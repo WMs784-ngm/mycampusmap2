@@ -75,9 +75,10 @@ class _MapScreenState extends State<MapScreen> {
                   ),
                 );
                 //_getPolyline.setMap(null);
-
+                polylines = {};
+                polylineCoordinates = [];
                 main();
-                //_getPolyline();
+                _getPolyline();
               }
           ),
           body: GoogleMap(
