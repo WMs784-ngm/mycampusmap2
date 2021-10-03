@@ -17,7 +17,7 @@ int e = 100;
 double ori_lat = 35.6587374, ori_long = 139.6840927;//デフォルトのカメラ位置として使用する駒場東大前駅
 
 int search(cn){
-  if(cn == null) return e;
+  if(cn == null) return e;//cn=class number
   else if(cn.length<4){
     if(cn[0] == 'E'){
       try{//文字列から数値への変換を試す
