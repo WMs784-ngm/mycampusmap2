@@ -41,7 +41,7 @@ class _MapScreenState extends State<MapScreen> {
   Map<PolylineId, Polyline> polylines = {};
   List<LatLng> polylineCoordinates = [];
   PolylinePoints polylinePoints = PolylinePoints();
-
+//目的地の緯度経度
 
   @override
   void initState() {
@@ -152,7 +152,7 @@ class _MapScreenState extends State<MapScreen> {
   _getPolyline() async {
     //clearOverlay;
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      googleAPiKey,
+      googleAPIKey,
       PointLatLng(_originLatitude, _originLongitude),
       PointLatLng(dest_lat(cn), dest_long(cn)),
       travelMode: TravelMode.walking,

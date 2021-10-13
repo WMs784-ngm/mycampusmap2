@@ -20,6 +20,7 @@ double ori_lat = 35.6587374, ori_long = 139.6840927;//デフォルトのカメ�
 int search(cn){
   if(cn == null) return d;
   else if(cn.length == 0)return d;
+  if(cn == null) return e;//cn=class number
   else if(cn.length<4){
     if(cn[0] == 'E'){
       try{//文字列から数値への変換を試す
@@ -136,7 +137,6 @@ double dest_long(text){
   else return long[search(text)];
 }
 String mark_name(text){
-  if(search(text) > 100)return dfl;
-  else if(search(text) >= long.length)return ec;
+  if(search(text) >= long.length)return ec;
   else return name[search(text)];
 }
