@@ -12,12 +12,14 @@ List<String> name = ["1号館","情報教育棟","21KOMCEE West","21KOMCEE East"
   "コミニケーションプラザ(北)","7号館","8号館","講堂","10号館","11号館","12号館","13号館",
   "アドミニストレーション棟","第一体育館","駒場図書館","17号館","18号館"];
 String ec = "正しい教室番号を入力してください";
+String dfl = "教室番号を入力してください";
 String cn = ec;
-int e = 100;
+int e = 100,d = 1000;
 double ori_lat = 35.6587374, ori_long = 139.6840927;//デフォルトのカメラ位置として使用する駒場東大前駅
 
 int search(cn){
-  if(cn == null) return e;
+  if(cn == null) return d;
+  else if(cn.length == 0)return d;
   else if(cn.length<4){
     if(cn[0] == 'E'){
       try{//文字列から数値への変換を試す
@@ -134,6 +136,7 @@ double dest_long(text){
   else return long[search(text)];
 }
 String mark_name(text){
-  if(search(text) >= long.length)return ec;
+  if(search(text) > 100)return dfl;
+  else if(search(text) >= long.length)return ec;
   else return name[search(text)];
 }
