@@ -3,7 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:appbar_textfield/appbar_textfield.dart';
-import 'package:slim/slim.dart';
+//import 'package:slim/slim.dart';
 
 import 'search_building.dart';
 import 'apikey.dart';
@@ -82,7 +82,37 @@ class _MapScreenState extends State<MapScreen> {
                 _getPolyline();
               }
           ),
-          body: GoogleMap(
+          body: Stack(
+            children: <Widget>[
+              GoogleMap(
+          initialCameraPosition: CameraPosition(
+              target: LatLng(dest_lat(cn),dest_long(cn)), zoom: 17),
+          myLocationEnabled: true,
+          myLocationButtonEnabled: true,
+          tiltGesturesEnabled: true,
+          compassEnabled: true,
+          scrollGesturesEnabled: true,
+          zoomGesturesEnabled: true,
+          onMapCreated: _onMapCreated,
+          markers: Set<Marker>.of(markers.values),
+          polylines: Set<Polyline>.of(polylines.values),
+            ),
+          Container(
+            color: Colors.white,
+            //width: double.infinity,
+              height: 40,
+              margin: EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(5.0),
+              alignment: Alignment.topCenter,
+            child:Text(mark_name(cn),
+              style: TextStyle(
+                fontSize:20
+              )
+            )
+          )
+          ],
+          ),
+          /*body: GoogleMap(
             initialCameraPosition: CameraPosition(
                 target: LatLng(dest_lat(cn),dest_long(cn)), zoom: 17),
             myLocationEnabled: true,
@@ -94,7 +124,8 @@ class _MapScreenState extends State<MapScreen> {
             onMapCreated: _onMapCreated,
             markers: Set<Marker>.of(markers.values),
             polylines: Set<Polyline>.of(polylines.values),
-          )),
+          )),*/
+      ),
     );
   }
   void _onMapCreated(GoogleMapController controller) async {
