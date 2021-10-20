@@ -41,6 +41,7 @@ class _MapScreenState extends State<MapScreen> {
   Map<PolylineId, Polyline> polylines = {};
   List<LatLng> polylineCoordinates = [];
   PolylinePoints polylinePoints = PolylinePoints();
+  String googleAPIKey = api_key;
 //目的地の緯度経度
 
   @override
@@ -102,7 +103,7 @@ class _MapScreenState extends State<MapScreen> {
             //width: double.infinity,
               height: 40,
               margin: EdgeInsets.all(10.0),
-              padding: EdgeInsets.all(5.0),
+              padding: EdgeInsets.all(10.0),
               alignment: Alignment.topCenter,
             child:Text(mark_name(cn),
               style: TextStyle(
