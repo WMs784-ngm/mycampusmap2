@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Komaba map',
         theme: ThemeData(
           primarySwatch: Colors.orange,
@@ -67,16 +68,12 @@ class _MapScreenState extends State<MapScreen> {
               onChanged:(text){
                 cn = text;
                 _addMarker(LatLng(dest_lat(cn), dest_long(cn)), "destination", BitmapDescriptor.defaultMarkerWithHue(90));
-                //_getPolyline();
-                //MapScreen();
                 mapController.animateCamera(
                   CameraUpdate.newCameraPosition(
                     CameraPosition(
                         target: LatLng(dest_lat(cn), dest_long(cn)), zoom: 17.0),
                   ),
                 );
-                //_getPolyline.setMap(null);
-
                 polylines = {};
                 polylineCoordinates = [];
                 main();
@@ -103,7 +100,7 @@ class _MapScreenState extends State<MapScreen> {
             //width: double.infinity,
               height: 40,
               margin: EdgeInsets.all(10.0),
-              padding: EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(5.0),
               alignment: Alignment.topCenter,
             child:Text(mark_name(cn),
               style: TextStyle(
@@ -113,19 +110,6 @@ class _MapScreenState extends State<MapScreen> {
           )
           ],
           ),
-          /*body: GoogleMap(
-            initialCameraPosition: CameraPosition(
-                target: LatLng(dest_lat(cn),dest_long(cn)), zoom: 17),
-            myLocationEnabled: true,
-            myLocationButtonEnabled: true,
-            tiltGesturesEnabled: true,
-            compassEnabled: true,
-            scrollGesturesEnabled: true,
-            zoomGesturesEnabled: true,
-            onMapCreated: _onMapCreated,
-            markers: Set<Marker>.of(markers.values),
-            polylines: Set<Polyline>.of(polylines.values),
-          )),*/
       ),
     );
   }
