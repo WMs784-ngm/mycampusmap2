@@ -64,7 +64,7 @@ class _MapScreenState extends State<MapScreen> {
     return SafeArea(
       child: Scaffold(
         appBar:AppBarTextField(
-            title:Text("教室番号"),
+            title:Text(guide),
             onChanged:(text){
               cn = text;
               _addMarker(LatLng(dest_lat(cn), dest_long(cn)), "destination", BitmapDescriptor.defaultMarkerWithHue(90));
@@ -85,7 +85,7 @@ class _MapScreenState extends State<MapScreen> {
             children: <Widget>[
               DrawerHeader(
                 child: Text(
-                    "設定",
+                    setting,
                   style: TextStyle(
                     fontSize: 30,
                   ),
@@ -96,9 +96,21 @@ class _MapScreenState extends State<MapScreen> {
               ),
               ListTile(
                 title: Text("日本語"),
+                onTap: (){
+                  guide = "教室番号";
+                  ec = "正しい教室番号を入力してください";
+                  setting = "言語設定";
+                  main();
+                },
               ),
               ListTile(
                 title: Text("English"),
+                onTap: (){
+                  guide = "classroom number";
+                  ec = "Enter the correct classroom number.";
+                  setting = "language setting";
+                  main();
+                },
               ),
             ],
           ),
