@@ -63,53 +63,76 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar:AppBarTextField(
-              title:Text("教室番号"),
-              onChanged:(text){
-                cn = text;
-                _addMarker(LatLng(dest_lat(cn), dest_long(cn)), "destination", BitmapDescriptor.defaultMarkerWithHue(90));
-                mapController.animateCamera(
-                  CameraUpdate.newCameraPosition(
-                    CameraPosition(
-                        target: LatLng(dest_lat(cn), dest_long(cn)), zoom: 17.0),
-                  ),
-                );
-                polylines = {};
-                polylineCoordinates = [];
-                main();
-                _getPolyline();
-              }
-          ),
-          body: Stack(
+        appBar:AppBarTextField(
+            title:Text("教室番号"),
+            onChanged:(text){
+              cn = text;
+              _addMarker(LatLng(dest_lat(cn), dest_long(cn)), "destination", BitmapDescriptor.defaultMarkerWithHue(90));
+              mapController.animateCamera(
+                CameraUpdate.newCameraPosition(
+                  CameraPosition(
+                      target: LatLng(dest_lat(cn), dest_long(cn)), zoom: 17.0),
+                ),
+              );
+              polylines = {};
+              polylineCoordinates = [];
+              main();
+              _getPolyline();
+            }
+        ),
+        drawer: Drawer(
+          child: ListView(
             children: <Widget>[
-              GoogleMap(
-          initialCameraPosition: CameraPosition(
-              target: LatLng(dest_lat(cn),dest_long(cn)), zoom: 17),
-          myLocationEnabled: true,
-          myLocationButtonEnabled: true,
-          tiltGesturesEnabled: true,
-          compassEnabled: true,
-          scrollGesturesEnabled: true,
-          zoomGesturesEnabled: true,
-          onMapCreated: _onMapCreated,
-          markers: Set<Marker>.of(markers.values),
-          polylines: Set<Polyline>.of(polylines.values),
-            ),
-          Container(
-            color: Colors.white,
-            //width: double.infinity,
-              height: 40,
-              margin: EdgeInsets.all(10.0),
-              padding: EdgeInsets.all(5.0),
-              alignment: Alignment.topCenter,
-            child:Text(mark_name(cn),
-              style: TextStyle(
-                fontSize:20
-              )
-            )
-          )
-          ],
+              DrawerHeader(
+                child: Text(
+                    "設定",
+                  style: TextStyle(
+                    fontSize: 30,
+                  ),
+                ),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+              ListTile(
+                title: Text("日本語"),
+              ),
+              ListTile(
+                title: Text("English"),
+              ),
+            ],
           ),
+        ),
+        body: Stack(
+          children: <Widget>[
+            GoogleMap(
+              initialCameraPosition: CameraPosition(
+                  target: LatLng(dest_lat(cn),dest_long(cn)), zoom: 17),
+              myLocationEnabled: true,
+              myLocationButtonEnabled: true,
+              tiltGesturesEnabled: true,
+              compassEnabled: true,
+              scrollGesturesEnabled: true,
+              zoomGesturesEnabled: true,
+              onMapCreated: _onMapCreated,
+              markers: Set<Marker>.of(markers.values),
+              polylines: Set<Polyline>.of(polylines.values),
+            ),
+            Container(
+                color: Colors.white,
+                //width: double.infinity,
+                height: 40,
+                margin: EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(5.0),
+                alignment: Alignment.topCenter,
+                child:Text(mark_name(cn),
+                    style: TextStyle(
+                        fontSize:20
+                    )
+                )
+            )
+          ],
+        ),
       ),
     );
   }
