@@ -3,7 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:appbar_textfield/appbar_textfield.dart';
-//import 'package:slim/slim.dart';
+import 'package:styled_text/styled_text.dart';
 
 import 'search_building.dart';
 import 'apikey.dart';
@@ -84,11 +84,17 @@ class _MapScreenState extends State<MapScreen> {
           child: ListView(
             children: <Widget>[
               DrawerHeader(
-                child: Text(
-                    setting,
+                child: StyledText(
+                  text: '<set/>&space;'+setting,
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 24
                   ),
+                  tags: {
+                    'set': StyledTextIconTag(
+                      Icons.settings,
+                      size: 30,
+                    ),
+                  },
                 ),
                 decoration: BoxDecoration(
                   color: Theme.of(context).primaryColor,
@@ -100,6 +106,7 @@ class _MapScreenState extends State<MapScreen> {
                   guide = "教室番号";
                   ec = "正しい教室番号を入力してください";
                   setting = "言語設定";
+                  Navigator.pop(context);
                   main();
                 },
               ),
@@ -109,6 +116,7 @@ class _MapScreenState extends State<MapScreen> {
                   guide = "classroom number";
                   ec = "Enter the correct classroom number.";
                   setting = "language setting";
+                  Navigator.pop(context);
                   main();
                 },
               ),
