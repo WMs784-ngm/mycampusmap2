@@ -18,7 +18,7 @@ String guide = "教室番号";
 String message = "正しい教室番号を入力してください";
 String setting = "言語設定";
 int e = 100,d = 1000;
-double ori_lat = 35.6587374, ori_long = 139.6840927;//デフォルトのカメラ位置として使用する駒場東大前駅
+double ori_lat = 35.6588007, ori_long = 139.6845282;//デフォルトのカメラ位置として使用する駒場東大前駅
 
 int search(cn){
   if(cn == null) return d;

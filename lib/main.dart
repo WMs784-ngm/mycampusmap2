@@ -35,8 +35,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   late GoogleMapController mapController;
-  //double _originLatitude = 35.8430015, _originLongitude = 139.4497358;家
-  double _originLatitude = 35.6587374, _originLongitude = 139.6840927;//駒場東大前駅
+  double _originLatitude = ori_lat, _originLongitude = ori_long;//駒場東大前駅
   //double _destLatitude = dest_lat(cn), _destLongitude = dest_long(cn);
   Map<MarkerId, Marker> markers = {};
   Map<PolylineId, Polyline> polylines = {};
@@ -67,21 +66,32 @@ class _MapScreenState extends State<MapScreen> {
             title:Text(guide),
             onChanged:(text){
               cn = text;
-
               _addMarker(LatLng(dest_lat(cn), dest_long(cn)), "destination", BitmapDescriptor.defaultMarkerWithHue(90));
-              mapController.animateCamera(
-                CameraUpdate.newLatLngBounds(
-                  LatLngBounds(
-                    northeast: LatLng(dest_lat(cn),dest_long(cn)),
-                      southwest: LatLng(ori_lat,ori_long),
+              if(dest_lat(cn) == ori_lat){
+                mapController.animateCamera(
+                  CameraUpdate.newCameraPosition(
+                    CameraPosition(
+                      target: LatLng(dest_lat(cn),dest_long(cn)),
+                      zoom:17.5,
+                    ),
                   ),
-                  100.0
-                )
-              );
-              polylines = {};
-              polylineCoordinates = [];
-              main();
-              _getPolyline();
+                );
+              }
+              else {
+                mapController.animateCamera(
+                    CameraUpdate.newLatLngBounds(
+                        LatLngBounds(
+                          northeast: LatLng(dest_lat(cn), dest_long(cn)),
+                          southwest: LatLng(ori_lat, ori_long),
+                        ),
+                        100.0
+                    )
+                );
+              }
+                polylines = {};
+                polylineCoordinates = [];
+                main();
+                _getPolyline();
             }
         ),
         drawer: Drawer(
@@ -131,7 +141,7 @@ class _MapScreenState extends State<MapScreen> {
           children: <Widget>[
             GoogleMap(
               initialCameraPosition: CameraPosition(
-                  target: LatLng(dest_lat(cn),dest_long(cn)), zoom: 17),
+                  target: LatLng(dest_lat(cn),dest_long(cn)), zoom: 17.5),
               myLocationEnabled: true,
               myLocationButtonEnabled: true,
               tiltGesturesEnabled: true,
