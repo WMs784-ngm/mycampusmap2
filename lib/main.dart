@@ -67,12 +67,16 @@ class _MapScreenState extends State<MapScreen> {
             title:Text(guide),
             onChanged:(text){
               cn = text;
+
               _addMarker(LatLng(dest_lat(cn), dest_long(cn)), "destination", BitmapDescriptor.defaultMarkerWithHue(90));
               mapController.animateCamera(
-                CameraUpdate.newCameraPosition(
-                  CameraPosition(
-                      target: LatLng(dest_lat(cn), dest_long(cn)), zoom: 17.0),
-                ),
+                CameraUpdate.newLatLngBounds(
+                  LatLngBounds(
+                    northeast: LatLng(dest_lat(cn),dest_long(cn)),
+                      southwest: LatLng(ori_lat,ori_long),
+                  ),
+                  100.0
+                )
               );
               polylines = {};
               polylineCoordinates = [];
