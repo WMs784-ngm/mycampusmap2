@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:appbar_textfield/appbar_textfield.dart';
 import 'package:styled_text/styled_text.dart';
+import 'dart:math';
 
 import 'search_building.dart';
 import 'apikey.dart';
@@ -36,7 +37,7 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   late GoogleMapController mapController;
   double _originLatitude = ori_lat, _originLongitude = ori_long;//駒場東大前駅
-  //double _destLatitude = dest_lat(cn), _destLongitude = dest_long(cn);
+  double _destLatitude = dest_lat(cn), _destLongitude = dest_long(cn);
   Map<MarkerId, Marker> markers = {};
   Map<PolylineId, Polyline> polylines = {};
   List<LatLng> polylineCoordinates = [];
@@ -67,7 +68,7 @@ class _MapScreenState extends State<MapScreen> {
             onChanged:(text){
               cn = text;
               _addMarker(LatLng(dest_lat(cn), dest_long(cn)), "destination", BitmapDescriptor.defaultMarkerWithHue(90));
-              if(dest_lat(cn) == ori_lat){
+              if(search(cn) >= 100){
                 mapController.animateCamera(
                   CameraUpdate.newCameraPosition(
                     CameraPosition(
@@ -81,8 +82,8 @@ class _MapScreenState extends State<MapScreen> {
                 mapController.animateCamera(
                     CameraUpdate.newLatLngBounds(
                         LatLngBounds(
-                          northeast: LatLng(dest_lat(cn), dest_long(cn)),
-                          southwest: LatLng(ori_lat, ori_long),
+                          southwest: LatLng(ori_lat, min(ori_long,_destLongitude)),
+                          northeast: LatLng(dest_lat(cn), max(ori_long,_destLongitude)),
                         ),
                         100.0
                     )
