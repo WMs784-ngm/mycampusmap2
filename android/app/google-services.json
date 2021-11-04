@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1061428326756",
+    "project_id": "c3w-cfaad",
+    "storage_bucket": "c3w-cfaad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061428326756:android:5e3a098054d2aa699f0a71",
+        "android_client_info": {
+          "package_name": "com.search.mycampus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061428326756-9a117i4v33sntq95cs9uku4qdep0bpc5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDw49SyizIEcAWLGekDkSbY5-ENm5nEtl8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1061428326756-9a117i4v33sntq95cs9uku4qdep0bpc5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
